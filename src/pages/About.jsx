@@ -66,6 +66,37 @@ const About = () => {
   <div className="pointer-events-none absolute top-0 right-0 w-48 h-48 bg-pink-700 rounded-bl-full opacity-70 hidden md:block"></div>
 </section>
 
+{/* Newsletter Section */}
+<section className="bg-orange-50 py-4  px-6 mt-10 mb-4 rounded-xl shadow-md max-w-8xl mx-auto text-center">
+  <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-2">
+    Subscribe to Our Newsletter
+  </h2>
+  <p className="text-lg text-gray-700 mb-2">
+    Get the latest updates on gifts, offers, and special celebrations straight to your inbox.
+  </p>
+
+  {/* Form */}
+  <form className="flex flex-col sm:flex-row items-center justify-center gap-2 max-w-2xl mx-auto">
+    <input
+      type="email"
+      placeholder="Enter your email"
+      className="w-full sm:flex-1 px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
+      required
+    />
+    <button
+      type="submit"
+      className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300"
+    >
+      Subscribe
+    </button>
+  </form>
+
+  {/* Small note */}
+  <p className="text-sm text-gray-500 mt-2">
+    We respect your privacy. Unsubscribe anytime.
+  </p>
+</section>
+
 
     </>
   );

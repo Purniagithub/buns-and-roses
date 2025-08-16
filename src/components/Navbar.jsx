@@ -16,11 +16,29 @@ const Navbar = () => {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Shop", href: "#" },
-    { label: "Flowers", href: "#" },
-    { label: "Bakery", href: "#" },
+    {
+      label: "Categories",
+      href: "#",
+      subItems: [
+        { label: "Flowers", href: "/categories/flowers" },
+        { label: "Chocolates", href: "/categories/chocolates" },
+        { label: "Gift Hampers", href: "/categories/hampers" },
+        { label: "Plants", href: "/categories/plants" },
+      ],
+    },
+    {
+      label: "Occasions",
+      href: "#",
+      subItems: [
+        { label: "Birthday", href: "/occasions/birthday" },
+        { label: "Anniversary", href: "/occasions/anniversary" },
+        { label: "Valentine's Day", href: "/occasions/valentines" },
+        { label: "Mother's Day", href: "/occasions/mothers-day" },
+      ],
+    },
+    { label: "Cakes", href: "#" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "#" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -35,7 +53,7 @@ const Navbar = () => {
           Buns<span className="text-orange-500">&</span>Roses
         </div>
 
-        {/* Search Bar - only on md+ */}
+        {/* Search Bar */}
         <div className="hidden md:flex flex-1 mx-6">
           <input
             type="text"
@@ -44,7 +62,7 @@ const Navbar = () => {
           />
         </div>
 
-        {/* Right Icons */}
+        {/* Right Icons + Toggle */}
         <div className="flex items-center space-x-4">
           <button className="text-gray-600 hover:text-rose-500 transition">
             <FiHeart size={22} />
@@ -73,9 +91,9 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Toggle Button (always visible) */}
+          {/* Toggle Button */}
           <button
-            className="text-gray-700 focus:outline-none"
+            className="text-gray-700 focus:outline-none flex"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -83,36 +101,36 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Toggle Dropdown Menu (all screen sizes) */}
+      {/* Toggle Menu — Horizontal on big screens */}
       {isMenuOpen && (
-        <div className="w-full bg-white shadow-md md:hidden px-4 pb-4">
-          <ul className="flex flex-col space-y-2">
-            {navItems.map((item, index) => (
-              <li key={index}>
+        <div
+          className="w-full bg-white shadow-md px-4 pb-4 md:absolute md:left-1/2 md:-translate-x-1/2 
+                     md:top-full md:flex md:justify-center md:space-x-6 md:rounded-lg md:py-3"
+        >
+          <ul className="space-y-4 md:space-y-0 md:flex md:items-center md:gap-6">
+            {navItems.map((item) => (
+              <li key={item.label} className="relative group">
                 <a
                   href={item.href}
-                  className="block text-gray-700 text-base px-4 py-2 rounded hover:bg-rose-100 transition"
+                  className="hover:text-orange-600 font-medium block"
                 >
                   {item.label}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Desktop Menu as dropdown (same links, visible only if menu is toggled) */}
-      {isMenuOpen && (
-        <div className="hidden md:block bg-white shadow-md px-4 pb-4">
-          <ul className="flex justify-center space-x-6">
-            {navItems.map((item, index) => (
-              <li key={index}>
-                <a
-                  href={item.href}
-                  className="text-gray-700 hover:text-rose-600 font-medium transition"
-                >
-                  {item.label}
-                </a>
+                {item.subItems && (
+                  <ul className="pl-4 space-y-1 md:absolute md:pl-0 md:mt-0.5 md:bg-white md:shadow-md md:rounded-md md:hidden md:group-hover:block">
+                  {item.subItems.map((sub) => (
+                    <li key={sub.label}>
+                      <a
+                        href={sub.href}
+                        className="block px-3 py-1 hover:bg-orange-100 rounded"
+                      >
+                        {sub.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                
+                )}
               </li>
             ))}
           </ul>
